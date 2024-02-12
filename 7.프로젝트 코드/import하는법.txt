@@ -1,0 +1,21 @@
+터미널에서 sqlplus 접속
+
+id : System
+
+pw : Oracle로 접속
+
+→ 디렉토리 객체 생성
+
+CREATE DIRECTORY impdp_dir AS 'C:\project_db_backup';
+
+→ 디렉토리 scott에 구너한 부여
+
+GRANT READ, WRITE ON DIRECTORY impdp_dir TO scott;
+
+→ 권한 부여
+
+GRANT IMP_FULL_DATABASE TO scott;
+
+→ exit()로 오라클 나오고
+
+impdp scott/tiger DIRECTORY=impdp_dir DUMPFILE=backup0.2.dmp LOGFILE=import.log TABLE_EXISTS_ACTION=APPEND
