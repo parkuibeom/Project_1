@@ -1,0 +1,218 @@
+@font-face {
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Light';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-SemiBold';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  font-family: 'GmarketSansMedium';
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/*** Navbar ***/
+.navbar.sticky-top {
+  top: -100px;
+  transition: .5s;
+}
+
+.navbar .navbar-nav .nav-link {
+  margin-right: 35px;
+  padding: 25px 0;
+  color: var(--dark);
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+  color: var(--primary);
+}
+
+#topnav {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar End */
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1320px;
+}
+
+#contain {
+  margin-top: 150px;
+}
+
+.side-menu {
+  border: 0px solid black;
+  margin-top: 50px;
+  width: 100%;
+  height: 250px;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.service-item img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.service-title {
+  font-family: 'GmarketSansBold';
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.side-menu .text2 {
+  font-size: 18px;
+  font-family: 'Pretendard-Bold';
+  margin-bottom: 50px;
+}
+
+.side-menu .text2 a {
+  color: black;
+  text-decoration-line: none;
+  font-family: 'Pretendard-Bold';
+}
+
+.as_title1 {
+  font-family: 'Pretendard-Bold';
+  font-size: 26px;
+  line-height: 30px;
+}
+
+
+/* 글씨 사이즈 및 들여쓰기 */
+
+.ds_title {
+  font-family: 'Pretendard-Bold';
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.ds_title1 {
+  font-size: 1.1rem;
+  line-height: 30px;
+}
+
+.ds_indent_1 {
+  text-indent: 7px;
+  line-height: 30px;
+}
+
+.ds_indent_2 {
+  text-indent: 15px;
+  line-height: 30px;
+}
+
+.ds_indent_3 {
+  text-indent: 28px;
+  line-height: 30px;
+}
+
+/* 서울시 노인복지관 현황 리스트 삽입예정 div(표넣기)*/
+/* .ds_listBox {
+  width: 910px;
+  height: 200px;
+  border: 3px dotted #ccc;
+  margin-left: 40px;
+} */
+
+/* 전남 복지관/ 경로당 현황 테이블 */
+.ds_table {
+  width: 90%;
+  text-align: center;
+  /* border: 2px dotted #ccc; */
+  /* border-collapse: collapse; */
+  /*테두리 하나로 합치기기*/
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.ds_table th {
+  /*헤더 셀 색깔 지정*/
+  font-family: 'Pretendard-Bold';
+  font-size: 19px;
+  background-color: #cfdbf0;
+  height: 40px;
+  border: 2px dotted #ccc;
+}
+
+.ds_table td {
+  height: 40px;
+  font-family: 'Pretendard-Regular';
+  font-size: 18px;
+  border: 2px dotted #ccc;
+}
+
+.ds_table th,
+.ds_table td {
+  /*헤더 셀(th)과 셀 데이터(td) 테두리*/
+  /* border-bottom: 2px dotted #ccc; */
+  /* 글씨 중앙 정렬 */
+  vertical-align: middle;
+}
+
+.ds_rightline {
+  border-right: 2px dotted #ccc;
+}

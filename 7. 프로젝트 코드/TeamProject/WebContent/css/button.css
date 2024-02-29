@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+#btn {
+    text-align: center;
+}
+
+/* 현재 페이지 버튼 */
+#current {
+    background: linear-gradient(90deg,
+            rgba(0, 11, 172, 1) 0%,
+            rgba(46, 120, 188, 1) 100%);
+    color: #fff;
+    pointer-events: none;
+}
+
+.policyBtn {
+    margin: 10px;
+
+    font-family: 'Pretendard-Bold';
+    position: relative;
+    border: none;
+    min-width: 150px;
+    min-height: 50px;
+    background: linear-gradient(90deg,
+            rgba(207, 219, 240, 1) 0%,
+            rgba(184, 202, 232, 1) 100%);
+    border-radius: 1000px;
+    color: #1c3664;
+    cursor: pointer;
+    box-shadow: 12px 12px 24px rgba(28, 54, 100, 0.25);
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.policyBtn:hover {
+    transform: scale(1.2);
+}
+
+.policyBtn:hover::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid #b8cae8;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+}
