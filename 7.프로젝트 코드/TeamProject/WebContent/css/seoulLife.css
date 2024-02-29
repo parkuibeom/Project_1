@@ -1,0 +1,295 @@
+@font-face {
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Light';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-SemiBold';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+* {
+  font-family: 'GmarketSansMedium';
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/*** Navbar ***/
+.navbar.sticky-top {
+  top: -100px;
+  transition: .5s;
+}
+
+.navbar .navbar-nav .nav-link {
+  margin-right: 35px;
+  padding: 25px 0;
+  color: var(--dark);
+  font-size: 18px;
+  outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+  color: var(--primary);
+}
+
+#topnav {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar End */
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1320px;
+}
+
+#contain {
+  margin-top: 150px;
+}
+
+.side-menu {
+  border: 0px solid black;
+  margin-top: 50px;
+  width: 100%;
+  height: 250px;
+}
+
+/* 텍스트 사이즈 및 들여쓰기 */
+
+.service-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.service-item img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.service-title {
+  font-family: 'GmarketSansBold';
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.side-menu .text2 {
+  font-size: 18px;
+  font-family: 'Pretendard-Bold';
+  margin-bottom: 50px;
+}
+
+.side-menu .text2 a {
+  color: black;
+  text-decoration-line: none;
+  font-family: 'Pretendard-Bold';
+}
+
+
+/* 사업목적 ~ 지급기준 */
+
+.bs_title {
+  font-family: 'Pretendard-Bold';
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.bs_title1 {
+  font-size: 1.1rem;
+  line-height: 30px;
+}
+
+.bs_indent {
+  /* 들여쓰기 */
+  text-indent: 3%;
+  line-height: 30px;
+}
+
+
+/* 신청절차 */
+.bs_box {
+  width: 100%;
+  height: 110px;
+  border: 0px solid black;
+  margin-left: 30px;
+
+}
+
+/* 신청절차 텍스트 박스 */
+.bs_textbox {
+  width: 160px;
+  height: 110px;
+  border: 5px double #cfdbf0;
+  border-radius: 50%;
+  float: left;
+  text-align: center;
+  /* align-content: center; */
+  /* display: inline-block; */
+}
+
+/* 신청절차 화살표 */
+.bs_chevron span {
+  width: 40px;
+  height: 40px;
+  border: 0px solid orangered;
+  float: left;
+  margin-top: 30px;
+}
+
+/* 소득재산조사 세로 가운데 정렬 */
+.bs_line_2 {
+  line-height: 27px;
+}
+
+/* 연급지급 결정, 이의신청, 연금지급 세로 가운데 정렬 */
+.bs_line_3 {
+  line-height: 110px;
+}
+
+
+
+/* 혜택사항 표 */
+.bs_tableBox {
+  border: 0px solid salmon;
+  width: 1010px;
+  height: 280px;
+  margin-left: 30px;
+}
+
+.bs_intableBox {
+  text-align: center;
+  border: 0px solid #ccc;
+  width: 100%;
+  /* 줄 하나로 합치기 */
+  border-collapse: collapse;
+}
+
+/* 제목 2022 2023 */
+.bs_intableBox .bs_title2 {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #cfdbf0;
+  border-bottom: 2px dotted #ccc;
+}
+
+/* 2022 오른쪽 표 선 지정 및 합치기 */
+.bs_rightline2022,
+#bs_rightlineid {
+  border-right: 2px dotted #ccc;
+  border-collapse: collapse;
+}
+
+/* 내용 2022 2023 표 아래 선 지정 */
+.bs_rightline2022,
+.bs_rightline2023 {
+  width: 500px;
+  height: 300px;
+  border-bottom: 2px dotted #ccc;
+  vertical-align: middle;
+}
+
+.bs_y2022,
+.bs_y2023 {
+  width: 600px;
+  height: 240px;
+  border: 0px solid red;
+  margin: auto;
+}
+
+
+.bs_y2022 ul,
+.bs_y2023 ul {
+  width: 450px;
+  border: 0px solid blue;
+  margin: auto;
+  line-height: 26px;
+  /* 테이블 안 하면 오른쪽 정렬됨 */
+  display: table;
+
+}
+
+.bs_y2022 ul li,
+.bs_y2023 ul li {
+  width: 450px;
+  text-align: center;
+  padding: 2px;
+  border: 0px solid black;
+}
+
+#bottomMenu {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background-color: #efece1;
+}
+
+#bottomMenu #bottomImg {
+  width: 150px;
+  height: 100px;
+  border: 0px solid wheat;
+  display: block;
+  margin: 0 auto;
+}
+
+#bottomMenu ul {
+  text-align: center;
+  border: 0px solid #fff;
+}
+
+#bottomMenu li {
+  color: white;
+  font-size: 0.7rem;
+}

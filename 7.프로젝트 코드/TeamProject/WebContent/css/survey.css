@@ -1,0 +1,240 @@
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'GmarketSansMedium';
+    list-style: none;
+    text-decoration: none;
+}
+
+/*** Navbar ***/
+.navbar.sticky-top {
+    top: -100px;
+    transition: .5s;
+}
+
+.navbar .navbar-nav .nav-link {
+    margin-right: 35px;
+    padding: 25px 0;
+    color: var(--dark);
+    font-size: 18px;
+    font-weight: 500;
+    outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+#topnav {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/* Navbar End */
+/* ======================================== */
+
+.starySurveyBtn {
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1320px;
+}
+
+#contain {
+    margin-top: 94px;
+}
+
+
+/* 만족도 페이지 간단 소개 */
+.jumbotron {
+    background-color: #1c3664;
+    color: #fff;
+    padding: 80px 30px;
+    margin-bottom: 10px;
+}
+
+.jumbotron p {
+    font-family: 'GmarketSansLight';
+    /* 폰트 변경 예시 */
+    margin-top: 10px;
+}
+/* 만족도 페이지 간단 소개 끝 */
+/* ======================================== */
+
+
+
+/* survey start */
+.survey {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #b8cae8;
+    text-align: center;
+}
+
+.main {
+	background-color: #b8cae8;
+}
+
+.main h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 100px;
+    /* margin: 25px; */
+}
+
+
+.form {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    border: 0px solid black;
+    background-color: #fff;
+
+}
+
+.surveyform label {
+    /* 문항에 마우스 모양 변경 */
+    cursor: pointer;
+}
+
+/* 각 만족도 구분 제목 */
+.surveyform h2 {
+    font-size: 1.5rem;
+    padding-top: 15px;
+    text-align: left;
+    padding-left: 2%;
+}
+
+/* 각 만족도 테이블 크기 및 위치 */
+.commontable,
+.healthtable,
+.economicstable,
+.relationshiptable {
+    /* border: 1px solid #dddddd; */
+    /* border-collapse: collapse; */
+    width: 100%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 만족도 테이블 내용 테두리 및 세로크기 */
+.commontable td,
+.healthtable td,
+.economicstable td,
+.relationshiptable td {
+    border-bottom: 1px solid #dddddd;
+    height: 35px;
+}
+
+/* 질문 td */
+.question {
+    width: 50%;
+    text-align: left;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+/* 답변 td */
+.answer {
+    width: 50%;
+    text-align: left;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+/* .question label {
+    display: block;
+    margin-bottom: 5px;
+} */
+
+/* .resultBtn {
+    background-color: #b8cae8;
+    제출 버튼 색상 변경
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #1c3664;
+}
+
+.resultBtn:hover {
+    background-color: #a1b1d1;
+} */
+/* google survey end */
+
+
+/* survey result start */
+/* 삶의 만족도 점수 화면 */
+.satisfactionBOX {
+    width: 100%;
+    /* height: 1200px; */
+    font-size: 1.5rem;
+    text-align: center;
+    border: 0px solid blue;
+}
+
+.score_box {
+    width: 280px;
+    height: 140px;
+    line-height: 60px;
+    border: 3px double #1c3664;
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+/* survey result end*/
+
+
+/* graph start */
+.graph {
+    width: 100%;
+    /* height: 840px; */
+    border: 0px solid red;
+    text-align: center;
+}
+
+/*차트 2개 컨테이너*/
+.chartContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+/* graph div안에 p들의 글씨크기 */
+.graph {
+    font-size: 1.5em;
+}
+
+/* graph end */
