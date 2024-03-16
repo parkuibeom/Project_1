@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project.dlt.community.dao.ICommunityRepository">
+	<resultMap id="community"
+		type="com.project.dlt.community.model.CommunityVO">
+		<result property="communityId" column="COMMUNITY_ID" />
+		<result property="title" column="TITLE" />
+		<result property="userId" column="USER_ID" />
+		<result property="userName" column="USER_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="creationDate" column="CREATIONDATE" />
+		<result property="viewCount" column="VIEW_COUNT" />
+		<result property="groupNum" column="GROUP_NUMBER" />
+		<result property="stepNum" column="STEP" />
+	</resultMap>
+
+	<select id="CommunityList" parameterType="int"
+		resultMap="community">
+		SELECT
+		COMMUNITY_ID, USER_ID, TITLE, CONTENT,
+        USER_NAME,
+		TO_CHAR(CREATIONDATE,
+		'YYYY-MM-DD') AS CREATIONDATE,
+		VIEW_COUNT, GROUP_NUMBER,
+		STEP, INDENT
+		FROM (
+		SELECT COMMUNITY_ID, USER_ID, TITLE,USER_NAME,
+		CONTENT, CREATIONDATE,
+		VIEW_COUNT, GROUP_NUMBER,
+		STEP, INDENT ,
+		ROW_NUMBER() OVER (ORDER BY
+		GROUP_NUMBER DESC, STEP ASC) AS rnum
+		FROM
+		COMMUNITY
+		)
+		WHERE rnum BETWEEN
+		#{startRow} AND #{endRow}
+	</select>
+
+	<select id="getListSize" resultType="int">
+		SELECT COUNT (*) FROM
+		COMMUNITY
+	</select>
+	
+	
+	<select id="communityView" resultType="int" resultMap="community">
+		SELECT * FROM COMMUNITY WHERE COMMUNITY_ID = #{communityId}
+	</select>
+
+</mapper>
