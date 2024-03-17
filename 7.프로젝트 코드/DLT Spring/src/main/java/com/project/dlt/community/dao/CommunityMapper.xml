@@ -16,22 +16,26 @@
 		<result property="stepNum" column="STEP" />
 	</resultMap>
 
-	<select id="CommunityList" parameterType="int"
+	<select id="communityList" parameterType="int"
 		resultMap="community">
 		SELECT
 		COMMUNITY_ID, USER_ID, TITLE, CONTENT,
-        USER_NAME,
+		USER_NAME,
 		TO_CHAR(CREATIONDATE,
 		'YYYY-MM-DD') AS CREATIONDATE,
-		VIEW_COUNT, GROUP_NUMBER,
+		VIEW_COUNT,
+		GROUP_NUMBER,
 		STEP, INDENT
 		FROM (
-		SELECT COMMUNITY_ID, USER_ID, TITLE,USER_NAME,
+		SELECT COMMUNITY_ID, USER_ID,
+		TITLE,USER_NAME,
 		CONTENT, CREATIONDATE,
 		VIEW_COUNT, GROUP_NUMBER,
-		STEP, INDENT ,
+		STEP,
+		INDENT ,
 		ROW_NUMBER() OVER (ORDER BY
-		GROUP_NUMBER DESC, STEP ASC) AS rnum
+		GROUP_NUMBER DESC, STEP ASC) AS
+		rnum
 		FROM
 		COMMUNITY
 		)
@@ -43,10 +47,62 @@
 		SELECT COUNT (*) FROM
 		COMMUNITY
 	</select>
-	
-	
-	<select id="communityView" resultType="int" resultMap="community">
-		SELECT * FROM COMMUNITY WHERE COMMUNITY_ID = #{communityId}
+
+
+	<select id="communityView" resultMap="community">
+		SELECT * FROM COMMUNITY
+		WHERE COMMUNITY_ID = #{communityId}
 	</select>
+
+
+	<update id="communityEdit">
+		UPDATE COMMUNITY SET TITLE = #{title}, CONTENT = #{content},
+		CREATIONDATE = SYSDATE WHERE COMMUNITY_ID = #{communityId}
+	</update>
+
+
+
+	<resultMap id="comment"
+		type="com.project.dlt.community.model.CommentVO">
+		<result property="commentId" column="COMMENT_ID" />
+		<result property="communityId" column="COMMUNITY_ID" />
+		<result property="userId" column="USER_ID" />
+		<result property="userName" column="USER_NAME" />
+		<result property="creationDate" column="CREATIONDATE" />
+		<result property="comment" column="COMMENT_TEXT" />
+		<result property="group" column="GROUP_NUMBER" />
+		<result property="step" column="STEP" />
+	</resultMap>
+
+	<select id="commentList" resultMap="comment">
+		SELECT *
+		FROM comments
+		WHERE
+		COMMUNITY_ID = #{communityId}
+		ORDER BY GROUP_NUMBER DESC, COMMUNITY_ID
+		ASC
+	</select>
+
+	<insert id="comment">
+		INSERT INTO comments (COMMENT_ID, COMMUNITY_ID,
+		USER_ID, USER_NAME, COMMENT_TEXT, GROUP_NUMBER) VALUES
+		(COMMENT_SEQ.NEXTVAL, #{communityId}, #{userId}, #{userName},
+		#{comment}, GROUP_SEQ.NEXTVAL)
+	</insert>
+
+	<insert id="commentGroup">
+		INSERT INTO comments (COMMENT_ID, COMMUNITY_ID,
+		USER_ID, USER_NAME, COMMENT_TEXT, GROUP_NUMBER, STEP) VALUES
+		(COMMENT_SEQ.NEXTVAL, #{communityId}, #{userId}, #{userName},
+		#{comment}, #{group} ,1)
+	</insert>
+
+	<update id="commentDelete">
+		DELETE FROM comments WHERE GROUP_NUMBER = #{group}
+	</update>
+
+	<update id="commentDeleteStep">
+		DELETE FROM comments WHERE COMMENT_ID = #{commentId}
+	</update>
 
 </mapper>

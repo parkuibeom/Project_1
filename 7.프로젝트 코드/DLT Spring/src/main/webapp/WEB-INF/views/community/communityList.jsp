@@ -29,7 +29,7 @@
 
 	<!-- Navbar Start -->
 	<jsp:include page="../common/navi.jsp" flush="true">
-		<jsp:param name="navi" value="네비호출" />
+		<jsp:param name="navi" value="navi" />
 	</jsp:include>
 	<!-- Navbar End -->
 
@@ -122,7 +122,7 @@
 						<a href="/dlt/member/beforeLogin" class="on">등록</a>
 					</c:when>
 					<c:when test="${user_id != null }">
-						<a href="boardWrite.jsp" class="on">등록</a>
+						<a href="/dlt/community/write" class="on">등록</a>
 					</c:when>
 				</c:choose>
 			</div>
@@ -132,7 +132,7 @@
 
 	<!-- Footer Start -->
 	<jsp:include page="../common/footer.jsp" flush="true">
-		<jsp:param name="footer" value="푸터호출" />
+		<jsp:param name="footer" value="footer" />
 	</jsp:include>
 	<!-- Footer End -->
 

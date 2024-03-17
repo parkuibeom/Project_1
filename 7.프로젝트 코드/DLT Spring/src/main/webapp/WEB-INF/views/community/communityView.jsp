@@ -28,7 +28,7 @@
 <body>
 	<!-- Navbar Start -->
 	<jsp:include page="../common/navi.jsp" flush="true">
-		<jsp:param name="navi" value="네비호출" />
+		<jsp:param name="navi" value="navi" />
 	</jsp:include>
 	<!-- Navbar End -->
 
@@ -40,64 +40,66 @@
 		</div>
 		<div class="board_view_wrap">
 			<div class="board_view">
-				<div class="title">${board.getBoardTitle() }</div>
+				<div class="title">${communityVO.getTitle() }</div>
 				<div class="info">
 					<dl>
 						<dt>작성자</dt>
-						<dd>${board.getUserName() }</dd>
+						<dd>${communityVO.getUserName() }</dd>
 					</dl>
 					<dl>
 						<dt>작성일</dt>
-						<dd>${board.getBoardDate() }</dd>
+						<dd>${communityVO.getCreationDate() }</dd>
 					</dl>
 					<dl>
 						<dt>조회</dt>
-						<dd>${board.getBoardViews() }</dd>
+						<dd>${communityVO.getViewCount() }</dd>
 					</dl>
 				</div>
-				<div class="cont">${board.getBoardContent() }</div>
+				<div class="cont">${communityVO.getContent() }</div>
 			</div>
 
 			<!--URL 이동-->
 			<div class="bt_wrap">
-				<a href="boardList.do?page=1" class="on">목록</a>
+				<a href="list?page=1" class="on">목록</a>
 
 				<c:choose>
-					<c:when test="${board.getUserId() == user_id }">
-						<a href="boardEditView.do?boardId=${board.getBoardId() }"
+					<c:when test="${communityVO.getUserId() == user_id }">
+						<a
+							href="/dlt/community/communityEdit?communityId=${communityVO.getCommunityId() }"
 							class="on">수정</a>
 					</c:when>
 				</c:choose>
 			</div>
 
 
-			<form action="comment.do" method="post" name="commentform"
-				id="commentform">
-				<input type="hidden" name="b_id" value="${board.getBoardId() }" />
+			<form action="/dlt/community/comment" method="post"
+				name="commentform" id="commentform">
+				<input type="hidden" name="communityId"
+					value="${communityVO.getCommunityId() }" />
 				<div class="comments-container">
 
 
 					<!-- 댓글 목록 -->
-					<c:forEach items="${list}" var="dto">
+					<c:forEach items="${list}" var="vo">
 						<div
-							class="comment ${dto.getcStep() == 0 ? 'comment' : 'special-comment'}">
+							class="comment ${vo.getStep() == 0 ? 'comment' : 'special-comment'}">
 							<c:choose>
-								<c:when test="${dto.getcStep() == 0}">
-									<strong>${dto.getcName() } :</strong>${dto.getComment() }
+								<c:when test="${vo.getStep() == 0}">
+									<strong>${vo.getUserName() } :</strong>${vo.getComment() }
             </c:when>
 								<c:otherwise>
-									<strong>${dto.getcName() } :</strong>${dto.getComment() }
+									<strong>${vo.getUserName() } :</strong>${vo.getComment() }
             </c:otherwise>
 							</c:choose>
 
-							<div class="comment-info">${dto.getcDate() }</div>
+							<div class="comment-info">${vo.getCreationDate() }</div>
 
 							<c:choose>
 								<c:when test="${user_id != null}">
 									<c:choose>
-										<c:when test="${dto.getcStep() == 0}">
+										<c:when test="${vo.getStep() == 0}">
 											<div class="reply-button"
-												onclick="showReplyForm('${dto.getcName() }', ${dto.getGroup() })">답글
+												onclick="showReplyForm('${vo.getUserName() }', ${vo.getGroup() })">답글
 												달기</div>
 										</c:when>
 										<c:otherwise>
@@ -106,10 +108,10 @@
 									</c:choose>
 
 									<!-- ${dto.userId}와 ${sessionId}를 비교하여 일치하면 삭제하기 버튼 추가 -->
-									<c:if test="${dto.getUserId() == user_id}">
+									<c:if test="${vo.getUserId() == user_id}">
 										<div class="delete-button">
 											<a
-												href="commentDelete.do?group=${dto.getGroup() }&cId=${dto.getcId() }&cStep=${dto.getcStep() }&boardId=${board.getBoardId() }">삭제하기</a>
+												href="/dlt/community/commentDelete?group=${vo.getGroup() }&commentId=${vo.getCommentId() }&step=${vo.getStep() }&communityId=${communityVO.getCommunityId()}">삭제하기</a>
 										</div>
 									</c:if>
 								</c:when>
@@ -123,8 +125,7 @@
 
 					<!-- 댓글 입력 폼 -->
 					<div class="comment-form">
-						<textarea id="commentText" name="commentText"
-							placeholder="댓글을 입력하세요"></textarea>
+						<textarea id="commentText" name="comment" placeholder="댓글을 입력하세요"></textarea>
 
 
 						<c:choose>
@@ -147,7 +148,7 @@
 
 	<!-- Footer Start -->
 	<jsp:include page="../common/footer.jsp" flush="true">
-		<jsp:param name="footer" value="푸터호출" />
+		<jsp:param name="footer" value="footer" />
 	</jsp:include>
 	<!-- Footer End -->
 
@@ -158,8 +159,8 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Chart.js-->
-	<script src="lib/wow/wow.min.js"></script>
-	<script src="js/board.js"></script>
+	<script src="<c:url value="/lib/wow/wow.min.js" />"></script>
+	<script src="<c:url value="/js/community.js" />"></script>
 
 </body>
 
