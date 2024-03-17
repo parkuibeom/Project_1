@@ -13,8 +13,13 @@
 		<result property="phone" column="USER_PHONE" />
 	</resultMap>
 	<select id="login" parameterType="string" resultMap="member">
-		 SELECT * FROM MEMBERS WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
+		SELECT * FROM MEMBERS WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
 	</select>
+
+	<insert id="registerMember">
+		INSERT INTO MEMBERS (USER_ID,USER_PW,USER_NAME,USER_PHONE,USER_EMAIL)
+		VALUES (#{userId},#{userPw},#{name},#{phone},#{email})
+	</insert>
 
 
 </mapper>

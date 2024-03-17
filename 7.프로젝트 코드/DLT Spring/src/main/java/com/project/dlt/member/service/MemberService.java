@@ -65,8 +65,8 @@ public class MemberService implements IMemberService{
 
 	@Override
 	public String registerMember(MemberVO memberVO) {
-		System.out.println(memberVO);
-		return null;
+		memberRepository.registerMember(memberVO);
+		return "member/registrationCheck";
 	}
 
 	
