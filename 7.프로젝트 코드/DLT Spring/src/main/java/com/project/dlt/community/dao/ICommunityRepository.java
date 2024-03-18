@@ -14,7 +14,12 @@ public interface ICommunityRepository {
 
 	CommunityVO communityView(@Param("communityId") String communityId);
 	
+	void communityWrite(CommunityVO communityVO);
+	String communityWriteView(CommunityVO communityVO);
+	
 	void communityEdit(CommunityVO communityVO);
+	
+	void communityDelete(@Param("communityId") String communityId);
 
 	List<CommentVO> commentList(@Param("communityId") String communityId);
 	

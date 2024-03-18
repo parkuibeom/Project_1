@@ -26,13 +26,12 @@ public class CommunityController {
 
 	@GetMapping(value = "/community/write")
 	public String communityWrite() {
-//		communityService
 		return "/community/communityWrite";
 	}
 	
 	@PostMapping(value = "/community/write")
-	public String communityWrite(String asd) {
-		return "/community/communityWrite";
+	public String communityWrite(HttpSession session,CommunityVO communityVO) {
+		return communityService.communityWrite(session,communityVO);
 	}
 	
 	@GetMapping(value = "/community/view")
@@ -40,14 +39,19 @@ public class CommunityController {
 		communityService.communityView(model,communityId);
 		return "/community/communityView";
 	}
-	@GetMapping(value = "/community/communityEdit")
+	@GetMapping(value = "/community/edit")
 	public String communityview(Model model, String communityId) {
 		return communityService.communityEditView(model,communityId);
 	}
 	
-	@PostMapping(value = "/community/communityEdit")
-	public String communityview(CommunityVO communityVO) {
+	@PostMapping(value = "/community/edit")
+	public String communityEdit(CommunityVO communityVO) {
 		return communityService.communityEdit(communityVO);
+	}
+	
+	@GetMapping(value = "/community/delete")
+	public String communityDelete(String communityId) {
+		return communityService.communityDelete(communityId);
 	}
 	
 	@PostMapping(value = "/community/comment")

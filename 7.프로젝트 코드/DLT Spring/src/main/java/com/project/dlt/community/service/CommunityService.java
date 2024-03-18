@@ -46,7 +46,7 @@ public class CommunityService implements ICommunityService {
 	@Override
 	public String communityView(Model model, String communityId) {
 		CommunityVO communityVO = communityRepository.communityView(communityId);
-		communityVO.setContent(communityVO.getContent().replace("<br>","\n"));
+		communityVO.setContent(communityVO.getContent().replace("<br>", "\n"));
 		List<CommentVO> list = communityRepository.commentList(communityId);
 		model.addAttribute("communityVO", communityVO);
 		model.addAttribute("list", list);
@@ -54,9 +54,25 @@ public class CommunityService implements ICommunityService {
 	}
 
 	@Override
+	public String communityWrite(HttpSession session, CommunityVO communityVO) {
+		String userId = (String) session.getAttribute("user_id");
+		// 로그인 세션이 없을 때 예외 처리
+		if (userId == null) {
+			return "/member/login";
+		}
+		String userName = (String) session.getAttribute("user_name");
+		communityVO.setContent(communityVO.getContent().replace("\n", "<br>"));
+		communityVO.setUserId(userId);
+		communityVO.setUserName(userName);
+
+		communityRepository.communityWrite(communityVO);
+		return "redirect:/community/view?communityId=" + communityRepository.communityWriteView(communityVO);
+	}
+
+	@Override
 	public String communityEditView(Model model, String communityId) {
 		CommunityVO communityVO = communityRepository.communityView(communityId);
-		communityVO.setContent(communityVO.getContent().replace("<br>","\n"));
+		communityVO.setContent(communityVO.getContent().replace("<br>", "\n"));
 		model.addAttribute("communityVO", communityVO);
 		return "/community/communityEdit";
 	}
@@ -66,6 +82,12 @@ public class CommunityService implements ICommunityService {
 		communityRepository.communityEdit(communityVO);
 		communityVO.setContent(communityVO.getContent().replace("\n", "<br>"));
 		return "redirect:/community/view?communityId=" + communityVO.getCommunityId();
+	}
+
+	@Override
+	public String communityDelete(String communityId) {
+		communityRepository.communityDelete(communityId);;
+		return "redirect:/community/list?page=1";
 	}
 
 	@Override
@@ -80,9 +102,9 @@ public class CommunityService implements ICommunityService {
 		commentVO.setUserId(userId);
 		commentVO.setUserName(userName);
 		System.out.println(commentVO);
-		if(commentVO.getGroup() == 0) {			
+		if (commentVO.getGroup() == 0) {
 			communityRepository.comment(commentVO);
-		}else {			
+		} else {
 			communityRepository.commentGroup(commentVO);
 		}
 		return "redirect:/community/view?communityId=" + commentVO.getCommunityId();
@@ -90,14 +112,12 @@ public class CommunityService implements ICommunityService {
 
 	@Override
 	public String commentDelete(CommentVO commentVO) {
-		if(commentVO.getStep() == 0) {
+		if (commentVO.getStep() == 0) {
 			communityRepository.commentDelete(commentVO);
-		}else {
+		} else {
 			communityRepository.commentDeleteStep(commentVO);
 		}
 		return "redirect:/community/view?communityId=" + commentVO.getCommunityId();
 	}
-	
-	
 
 }

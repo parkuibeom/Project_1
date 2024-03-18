@@ -10,8 +10,13 @@ import com.project.dlt.community.model.CommunityVO;
 public interface ICommunityService {
 	String communityList (Model model,int page);
 	String communityView (Model model,String communityId);
+	
+	String communityWrite (HttpSession session,CommunityVO communityVO);
+	
 	String communityEditView (Model model,String communityId);
 	String communityEdit (CommunityVO communityVO);
+	
+	String communityDelete (String communityId);
 	
 	
 	String comment (HttpSession session,Model model,CommentVO commentVO);

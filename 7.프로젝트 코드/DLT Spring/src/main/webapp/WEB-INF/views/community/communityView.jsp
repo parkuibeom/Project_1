@@ -65,7 +65,7 @@
 				<c:choose>
 					<c:when test="${communityVO.getUserId() == user_id }">
 						<a
-							href="/dlt/community/communityEdit?communityId=${communityVO.getCommunityId() }"
+							href="/dlt/community/edit?communityId=${communityVO.getCommunityId() }"
 							class="on">수정</a>
 					</c:when>
 				</c:choose>

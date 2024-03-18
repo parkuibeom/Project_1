@@ -35,7 +35,7 @@
 			<strong>DLT 커뮤니티</strong>
 			<p>질문하고 소통하는 공간! 커뮤니티에 오신것을 환영합니다.</p>
 		</div>
-		<form action="/dlt/community/communityEdit" method="Post" id="editForm">
+		<form action="/dlt/community/edit" method="Post" id="editForm">
 			<input type="hidden" value="${communityVO.getCommunityId()}" name="communityId">
 			<div class="board_write_wrap">
 				<div class="board_write">
@@ -64,7 +64,7 @@
 				<div class="bt_wrap">
 					<button type="submit" id="onBtn">수정</button>
 					<a href="/dlt/community/view?communityId=${communityVO.getCommunityId() }">취소</a> <a
-						href="./boardDelete.do?boardId=${boardDto.getBoardId() }">삭제</a>
+						href="/dlt/community/delete?communityId=${communityVO.getCommunityId() }">삭제</a>
 				</div>
 
 			</div>

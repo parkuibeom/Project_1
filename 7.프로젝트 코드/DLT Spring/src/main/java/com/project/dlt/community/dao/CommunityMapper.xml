@@ -54,10 +54,29 @@
 		WHERE COMMUNITY_ID = #{communityId}
 	</select>
 
+	<insert id="communityWrite">
+		INSERT INTO COMMUNITY (COMMUNITY_ID,USER_ID,
+		USER_NAME, TITLE,
+		CONTENT, CREATIONDATE) VALUES (COMMUNITY_SEQ.NEXTVAL,
+		#{userId}, #{userName}, #{title}, #{content}, SYSDATE)
+	</insert>
+
+	<select id="communityWriteView" resultType="string">
+		SELECT COMMUNITY_ID
+		FROM COMMUNITY WHERE USER_ID = #{userId} AND TITLE = #{title} AND
+		CONTENT = #{content}
+	</select>
+
 
 	<update id="communityEdit">
-		UPDATE COMMUNITY SET TITLE = #{title}, CONTENT = #{content},
+		UPDATE COMMUNITY SET TITLE = #{title}, CONTENT =
+		#{content},
 		CREATIONDATE = SYSDATE WHERE COMMUNITY_ID = #{communityId}
+	</update>
+
+	<update id="communityDelete">
+		DELETE FROM COMMUNITY WHERE COMMUNITY_ID =
+		#{communityId}
 	</update>
 
 
