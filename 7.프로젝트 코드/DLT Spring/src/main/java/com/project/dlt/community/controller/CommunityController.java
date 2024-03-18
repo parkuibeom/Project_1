@@ -18,6 +18,13 @@ public class CommunityController {
 	@Autowired
 	ICommunityService communityService;
 
+	
+	@GetMapping(value = "/")
+	public String index(Model model) {
+		communityService.communityList(model,1);
+		return "/index";
+	}
+	
 	@GetMapping(value = "/community/list")
 	public String communityList(Model model, int page) {
 		communityService.communityList(model,page);

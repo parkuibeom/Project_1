@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${area}질병정보 페이지</title>
+<title>${area}질병정보페이지</title>
 
 <!-- 부트스트랩 -->
 <link
@@ -29,8 +29,12 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Myeongjo:wght@800&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="lib/animate/animate.css">
+
+
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/style.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/lib/animate/animate.css" />" />
 </head>
 
 <body>
@@ -108,16 +112,16 @@
 												<h4 class="card-title wow fadeIn">${area}</h4>
 												<select class="form-select form-select-lg mb-3 wow fadeIn"
 													id="seoul-select">
-													<c:forEach var="dto" items="${list}">
+													<c:forEach var="vo" items="${list}">
 														<c:choose>
 															<c:when
-																test="${dto.district_Name eq '해남군' or dto.district_Name eq '강남구'}">
-																<option value="${dto.district_Id}" selected="selected">${dto.district_Name}
+																test="${vo.districtName eq '해남군' or vo.districtName eq '강남구'}">
+																<option value="${vo.districtId}" selected="selected">${vo.districtName}
 																</option>
 															</c:when>
 															<c:otherwise>
-																<option value="${dto.district_Id}">
-																	${dto.district_Name}</option>
+																<option value="${vo.districtId}">
+																	${vo.districtName}</option>
 															</c:otherwise>
 														</c:choose>
 													</c:forEach>
@@ -161,11 +165,13 @@
 									<div class="row no-gutters align-items-center">
 										<div>
 											<h4>4대 질병이란?</h4>
-											<button id="infoBoxbtm" onclick="toggleInfo()">차트 단위 확인하기</button>
+											<button id="infoBoxbtm" onclick="toggleInfo()">차트 단위
+												확인하기</button>
 										</div>
-										<div id="infoBox" class = "mt-3">
-											<p>해당 차트에서 사용된 단위는 %단위로 전 국민 중 의료 서비스를 이용하여 해당 질병이 있다고 판정받은 사람의 비율입니다.<br>
-												(계산식 : 질병 판정 인원/전체 인구 x 100, 출처 : 국민건강보험공단)
+										<div id="infoBox" class="mt-3">
+											<p>
+												해당 차트에서 사용된 단위는 %단위로 전 국민 중 의료 서비스를 이용하여 해당 질병이 있다고 판정받은 사람의
+												비율입니다.<br> (계산식 : 질병 판정 인원/전체 인구 x 100, 출처 : 국민건강보험공단)
 											</p>
 											<!-- 추가적인 설명을 여기에 추가할 수 있습니다. -->
 										</div>
@@ -212,9 +218,9 @@
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
 
-	<!-- script 파일 복붙시 수정 -->
-	<script src="js/statisticsService.js"></script>
-	<script src="./lib/wow/wow.min.js"></script>
+
+	<script src="<c:url value="/js/statisticsService.js" />"></script>
+	<script src="<c:url value="/lib/wow/wow.min.js" />"></script>
 </body>
 
 </html>

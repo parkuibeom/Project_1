@@ -37,19 +37,28 @@ window.onload = function () {
 
                 
                 
-                fetch('map.json')
+           
+   // map.json 파일을 가져와서 처리하는 함수
+     fetch("../json/map.json")
     .then(response => {
+        // HTTP 응답 상태를 확인하고 오류가 발생하면 에러를 던집니다.
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Failed to fetch map.json');
         }
+        // JSON 형식으로 변환하여 반환합니다.
         return response.json();
     })
-    .then(data => {
-        console.log(data); // JSON 데이터 처리
+    .then(jsonData => {
+        // JSON 데이터를 가져와서 각 feature를 처리합니다.
+        jsonData.features.forEach(feature => {
+            kkoMap.getPolycode(feature);
+        });
     })
     .catch(error => {
-        console.error('Error fetching JSON:', error);
+        // 오류가 발생한 경우 콘솔에 에러 메시지를 출력합니다.
+        console.error('Error fetching map.json:', error);
     });
+
                 
                 
         },
@@ -107,12 +116,15 @@ window.onload = function () {
             });
 
             kakao.maps.event.addListener(polygon, 'click', function () {
-                console.log(data.name);
-                if (data.name == '서울특별시') {
-                	window.open('Chart.do?area=1&district=1', 'PopupWindow', popupFeatures);
-                } else if (data.name == '전라남도') {
-                	window.open('Chart.do?area=2&district=1', 'PopupWindow', popupFeatures);
-                }
+                 var url;
+    if (data.name == '서울특별시') {
+        url = '/dlt/disease/statisticsService?area=1';
+    } else if (data.name == '전라남도') {
+        url = '/dlt/disease/statisticsService?area=2';
+    } else {
+        return; // 다른 지역일 경우 동작하지 않음
+    }
+    window.open(url, 'PopupWindow', popupFeatures);
             });
 
             polygon.setMap(map);

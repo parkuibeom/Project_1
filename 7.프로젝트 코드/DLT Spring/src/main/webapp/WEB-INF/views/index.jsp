@@ -156,14 +156,14 @@
 								</thead>
 								<tbody>
 									<c:set var="currentPage" value="1" scope="request" />
-									<c:forEach var="dto" items="${boardList}" varStatus="status"
+									<c:forEach var="vo" items="${communityList}" varStatus="status"
 										begin="0" end="4">
 										<tr>
-											<td>${(page - 1) * 10 + status.count}</td>
-											<td><a href="./boardView.do?boardId=${dto.getBoardId()}"
-												style="text-decoration: none">${dto.getBoardTitle()}</a></td>
-											<td>${dto.getUserName()}</td>
-											<td>${dto.getBoardDate()}</td>
+											<td>${(page) * 10 + status.count}</td>
+											<td><a href="./boardView.do?boardId=${vo.getCommunityId()}"
+												style="text-decoration: none">${vo.getTitle()}</a></td>
+											<td>${vo.getUserName()}</td>
+											<td>${vo.getCreationDate()}</td>
 										</tr>
 									</c:forEach>
 

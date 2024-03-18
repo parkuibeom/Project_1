@@ -263,7 +263,7 @@ function chartSet() {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 2
+                        max: 7
                     }
                 }
                 , responsive: true, // 차트 반응형 옵션
@@ -508,7 +508,7 @@ document.getElementById('seoul-select').addEventListener('change', function () {
 
 
 function getData(district) {
-    fetch('/TeamProject/getChart.do?district=' + district, {
+    fetch('/dlt/disease/getData?district=' + district, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -519,10 +519,10 @@ function getData(district) {
 
             let year = 2009;
             for (let i = 0; i < data.length; i++) {
-                seoulData[year].hyperlipidemia = data[i].hyperlipidemia_data;
-                seoulData[year].dementia = data[i].dementia_data;
-                seoulData[year].diabetes = data[i].diabetes_data;
-                seoulData[year].hbp = data[i].hypertension_data;
+                seoulData[year].hyperlipidemia = data[i].hyperlipidemiaData;
+                seoulData[year].dementia = data[i].demeniaData;
+                seoulData[year].diabetes = data[i].diabetesData;
+                seoulData[year].hbp = data[i].hypertensionData;
                 year++;
             }
             console.log(data);
