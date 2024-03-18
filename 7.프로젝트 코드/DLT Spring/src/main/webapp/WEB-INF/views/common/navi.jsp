@@ -9,7 +9,9 @@
 	<nav id="topnav"
 		class="navbar navbar-expand-lg bg-white navbar-light px-4 px-lg-5">
 		<a href="/dlt" class="navbar-brand d-flex align-items-center"
-			id="mainLogoBox"> <img src="/img/logo.png" alt="Logo">
+			id="mainLogoBox"> <img src="<c:url value="/img/logo.png" />" alt="Logo">
+
+
 
 		</a>
 		<button type="button" class="navbar-toggler me-0"
@@ -20,11 +22,11 @@
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<!-- <a href="index.html" class="nav-item nav-link active">Home</a> -->
 				<div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="map.jsp"
+					<a class="nav-link dropdown-toggle" href="/dlt/disease/map"
 						id="navbarDropdownGroup1" role="button" data-bs-toggle="dropdown">
 						건강·정책 </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="map.jsp">질병 정보</a> <a
+						<a class="dropdown-item" href="/dlt/disease/map">질병 정보</a> <a
 							class="dropdown-item" href="policy.jsp">정책</a>
 					</div>
 				</div>

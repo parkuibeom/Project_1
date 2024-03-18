@@ -35,13 +35,23 @@ window.onload = function () {
 
 
 
-            fetch("map.json")
-                .then(response => response.json())
-                .then(jData => {
-                    jData.features.forEach(feature => {
-                        kkoMap.getPolycode(feature);
-                    });
-                });
+                
+                
+                fetch('map.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data); // JSON 데이터 처리
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
+                
+                
         },
         getPolycode: function (feature) {
             var geometry = feature.geometry;

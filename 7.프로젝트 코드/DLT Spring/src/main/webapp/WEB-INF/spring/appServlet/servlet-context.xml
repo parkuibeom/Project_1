@@ -16,7 +16,7 @@
 	<context:component-scan
 		base-package="com.project.dlt.member.controller" />
 	<context:component-scan
-		base-package="com.project.dlt.borough.controller" />
+		base-package="com.project.dlt.disease.controller" />
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
