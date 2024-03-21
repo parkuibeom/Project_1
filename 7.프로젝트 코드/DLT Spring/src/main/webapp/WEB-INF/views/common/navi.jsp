@@ -26,7 +26,7 @@
 						id="navbarDropdownGroup1" role="button" data-bs-toggle="dropdown">
 						건강·정책 </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/dlt/disease/map">질병 정보</a> <a
+						<a class="dropdown-item" href="/dlt/resources/build/index.html">질병 정보</a> <a
 							class="dropdown-item" href="policy.jsp">정책</a>
 					</div>
 				</div>

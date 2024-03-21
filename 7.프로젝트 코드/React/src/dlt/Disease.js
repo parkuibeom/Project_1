@@ -13,8 +13,8 @@ function StatisticsPage() {
   const [chartData1, setChartData1] = useState(null);
   const [chartData2, setChartData2] = useState(null);
   const [selectedDisease, setSelectedDisease] = useState("hyperlipidemia");
-  const [selectedRegion1, setSelectedRegion1] = useState("1");
-  const [selectedRegion2, setSelectedRegion2] = useState("1");
+  const [selectedRegion1, setSelectedRegion1] = useState("서울특별시");
+  const [selectedRegion2, setSelectedRegion2] = useState("서울특별시");
   const [selectedGraphType, setSelectedGraphType] = useState("line");
 
   useEffect(() => {
@@ -31,6 +31,8 @@ function StatisticsPage() {
         throw new Error(`Failed to fetch chart data`);
       }
       const data = await response.json();
+
+      console.log(data);
       if (chartNumber === 1) {
         setChartData1(data);
       } else if (chartNumber === 2) {
@@ -96,23 +98,22 @@ function StatisticsPage() {
               value={selectedRegion1}
               onChange={(event) => handleRegionChange(event, 1)}
             >
-              <option value="1">서울</option>
-              <option value="2">부산</option>
-              <option value="3">대구</option>
-              <option value="4">인천</option>
-              <option value="5">광주</option>
-              <option value="6">대전</option>
-              <option value="7">울산</option>
-              <option value="8">세종</option>
-              <option value="9">경기</option>
-              <option value="10">강원</option>
-              <option value="11">충북</option>
-              <option value="12">충남</option>
-              <option value="13">전북</option>
-              <option value="14">전남</option>
-              <option value="15">경북</option>
-              <option value="16">경남</option>
-              <option value="17">제주</option>
+              <option value="서울특별시">서울</option>
+              <option value="부산광역시">부산</option>
+              <option value="대구광역시">대구</option>
+              <option value="인천광역시">인천</option>
+              <option value="광주광역시">광주</option>
+              <option value="대전광역시">대전</option>
+              <option value="울산광역시">울산</option>
+              <option value="경기도">경기</option>
+              <option value="강원도">강원</option>
+              <option value="충청북도">충북</option>
+              <option value="충청남도">충남</option>
+              <option value="전라북도">전북</option>
+              <option value="전라남도">전남</option>
+              <option value="경상북도">경북</option>
+              <option value="경상남도">경남</option>
+              <option value="제주특별자치도">제주</option>
               {/* 필요한 지역 옵션들을 추가하세요 */}
             </select>
           </div>
@@ -131,23 +132,22 @@ function StatisticsPage() {
               value={selectedRegion2}
               onChange={(event) => handleRegionChange(event, 2)}
             >
-              <option value="1">서울</option>
-              <option value="2">부산</option>
-              <option value="3">대구</option>
-              <option value="4">인천</option>
-              <option value="5">광주</option>
-              <option value="6">대전</option>
-              <option value="7">울산</option>
-              <option value="8">세종</option>
-              <option value="9">경기</option>
-              <option value="10">강원</option>
-              <option value="11">충북</option>
-              <option value="12">충남</option>
-              <option value="13">전북</option>
-              <option value="14">전남</option>
-              <option value="15">경북</option>
-              <option value="16">경남</option>
-              <option value="17">제주</option>
+              <option value="서울특별시">서울</option>
+              <option value="부산광역시">부산</option>
+              <option value="대구광역시">대구</option>
+              <option value="인천광역시">인천</option>
+              <option value="광주광역시">광주</option>
+              <option value="대전광역시">대전</option>
+              <option value="울산광역시">울산</option>
+              <option value="경기도">경기</option>
+              <option value="강원도">강원</option>
+              <option value="충청북도">충북</option>
+              <option value="충청남도">충남</option>
+              <option value="전라북도">전북</option>
+              <option value="전라남도">전남</option>
+              <option value="경상북도">경북</option>
+              <option value="경상남도">경남</option>
+              <option value="제주특별자치도">제주</option>
               {/* 필요한 지역 옵션들을 추가하세요 */}
             </select>
           </div>
