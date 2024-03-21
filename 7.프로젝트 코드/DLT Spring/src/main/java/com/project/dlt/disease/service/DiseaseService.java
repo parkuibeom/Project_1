@@ -34,12 +34,7 @@ public class DiseaseService implements IDiseaseService{
 		}else if(disease.equals("hbp")) {
 			disease = "HYPERTENSION_DATA";
 		}
-		
 		List<DiseaseVO> list = diseaseRepository.getData(region,disease);
-		
-		System.out.println(region);
-		System.out.println(disease);
-		System.out.println(list);
 		return list;
 	}
 }

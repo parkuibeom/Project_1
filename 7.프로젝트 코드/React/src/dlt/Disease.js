@@ -1,8 +1,12 @@
+// StatisticsPage.js
 import React, { useState, useEffect } from "react";
 import Navbar from "./Nav";
 import Footer from "./Footer";
 import ChartComponent from "./DiseaseChart";
 import Infobox from "./Infobox";
+import RegionSelect from "./RegionSelect";
+import DiseaseButton from "./DiseaseButton";
+import GraphTypeButtons from "./GraphTypeButtons";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../dlt/css/style.css";
@@ -25,14 +29,13 @@ function StatisticsPage() {
   const fetchData = async (chartNumber, region, disease) => {
     try {
       const response = await fetch(
-        `http://localhost:8181/dlt/disease/chartData?region=${region}&disease=${disease}`
+        `/dlt/disease/chartData?region=${region}&disease=${disease}`
       );
       if (!response.ok) {
         throw new Error(`Failed to fetch chart data`);
       }
       const data = await response.json();
 
-      console.log(data);
       if (chartNumber === 1) {
         setChartData1(data);
       } else if (chartNumber === 2) {
@@ -93,29 +96,11 @@ function StatisticsPage() {
               />
             </div>
 
-            <select
-              className="form-select"
-              value={selectedRegion1}
-              onChange={(event) => handleRegionChange(event, 1)}
-            >
-              <option value="서울특별시">서울</option>
-              <option value="부산광역시">부산</option>
-              <option value="대구광역시">대구</option>
-              <option value="인천광역시">인천</option>
-              <option value="광주광역시">광주</option>
-              <option value="대전광역시">대전</option>
-              <option value="울산광역시">울산</option>
-              <option value="경기도">경기</option>
-              <option value="강원도">강원</option>
-              <option value="충청북도">충북</option>
-              <option value="충청남도">충남</option>
-              <option value="전라북도">전북</option>
-              <option value="전라남도">전남</option>
-              <option value="경상북도">경북</option>
-              <option value="경상남도">경남</option>
-              <option value="제주특별자치도">제주</option>
-              {/* 필요한 지역 옵션들을 추가하세요 */}
-            </select>
+            <RegionSelect
+              selectedRegion={selectedRegion1}
+              handleRegionChange={handleRegionChange}
+              chartNumber={1}
+            />
           </div>
 
           <div style={{ marginLeft: "30px" }}>
@@ -127,31 +112,21 @@ function StatisticsPage() {
                 selectedGraphType={selectedGraphType}
               />
             </div>
-            <select
-              className="form-select"
-              value={selectedRegion2}
-              onChange={(event) => handleRegionChange(event, 2)}
-            >
-              <option value="서울특별시">서울</option>
-              <option value="부산광역시">부산</option>
-              <option value="대구광역시">대구</option>
-              <option value="인천광역시">인천</option>
-              <option value="광주광역시">광주</option>
-              <option value="대전광역시">대전</option>
-              <option value="울산광역시">울산</option>
-              <option value="경기도">경기</option>
-              <option value="강원도">강원</option>
-              <option value="충청북도">충북</option>
-              <option value="충청남도">충남</option>
-              <option value="전라북도">전북</option>
-              <option value="전라남도">전남</option>
-              <option value="경상북도">경북</option>
-              <option value="경상남도">경남</option>
-              <option value="제주특별자치도">제주</option>
-              {/* 필요한 지역 옵션들을 추가하세요 */}
-            </select>
+            <RegionSelect
+              selectedRegion={selectedRegion2}
+              handleRegionChange={handleRegionChange}
+              chartNumber={2}
+            />
           </div>
         </div>
+      </div>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
+      >
+        <GraphTypeButtons
+          selectedGraphType={selectedGraphType}
+          handleGraphTypeChange={handleGraphTypeChange}
+        />
       </div>
 
       <div
@@ -159,47 +134,8 @@ function StatisticsPage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginRight: "20px",
-          marginTop: "60px",
         }}
       >
-        <div
-          className="btn-group mt-3"
-          role="group"
-          aria-label="Graph type"
-          style={{ marginBottom: "50px" }}
-        >
-          <button
-            type="button"
-            className={`btn btn-primary ${
-              selectedGraphType === "line" && "active"
-            }`}
-            style={{
-              backgroundColor:
-                selectedGraphType === "line" ? "#007bff" : "#6c757d",
-              borderColor: selectedGraphType === "line" ? "#007bff" : "#6c757d",
-              width: "150px",
-            }}
-            onClick={() => handleGraphTypeChange("line")}
-          >
-            선 그래프
-          </button>
-          <button
-            type="button"
-            className={`btn btn-primary ${
-              selectedGraphType === "bar" && "active"
-            }`}
-            style={{
-              backgroundColor:
-                selectedGraphType === "bar" ? "#28a745" : "#6c757d",
-              borderColor: selectedGraphType === "bar" ? "#28a745" : "#6c757d",
-              width: "150px",
-            }}
-            onClick={() => handleGraphTypeChange("bar")}
-          >
-            막대 그래프
-          </button>
-        </div>
         <div
           style={{
             display: "flex",
@@ -207,47 +143,33 @@ function StatisticsPage() {
             width: "600px",
           }}
         >
-          <button
-            className={`btn btn-primary ${
-              selectedDisease === "hyperlipidemia" && "active"
-            }`}
-            style={{ backgroundColor: "rgba(255, 206, 86)", width: "120px" }}
-            onClick={() => handleDiseaseButtonClick("hyperlipidemia")}
-          >
-            고지혈증
-          </button>
-
-          <button
-            className={`btn btn-primary ${
-              selectedDisease === "dementia" && "active"
-            }`}
-            style={{ backgroundColor: "rgba(255, 99, 132)", width: "120px" }}
-            onClick={() => handleDiseaseButtonClick("dementia")}
-          >
-            치매
-          </button>
-
-          <button
-            className={`btn btn-primary ${
-              selectedDisease === "diabetes" && "active"
-            }`}
-            style={{ backgroundColor: "rgba(54, 162, 235)", width: "120px" }}
-            onClick={() => handleDiseaseButtonClick("diabetes")}
-          >
-            당뇨
-          </button>
-
-          <button
-            className={`btn btn-primary ${
-              selectedDisease === "hbp" && "active"
-            }`}
-            style={{ backgroundColor: "rgba(75, 192, 192)", width: "120px" }}
-            onClick={() => handleDiseaseButtonClick("hbp")}
-          >
-            고혈압
-          </button>
+          <DiseaseButton
+            selectedDisease={selectedDisease}
+            handleDiseaseButtonClick={handleDiseaseButtonClick}
+            diseaseValue="hyperlipidemia"
+            disease="고지혈증"
+          />
+          <DiseaseButton
+            selectedDisease={selectedDisease}
+            handleDiseaseButtonClick={handleDiseaseButtonClick}
+            diseaseValue="dementia"
+            disease="치매"
+          />
+          <DiseaseButton
+            selectedDisease={selectedDisease}
+            handleDiseaseButtonClick={handleDiseaseButtonClick}
+            diseaseValue="diabetes"
+            disease="당뇨"
+          />
+          <DiseaseButton
+            selectedDisease={selectedDisease}
+            handleDiseaseButtonClick={handleDiseaseButtonClick}
+            diseaseValue="hbp"
+            disease="고혈압"
+          />
         </div>
       </div>
+
       <Infobox style={{ marginTop: "100px", marginBottom: "100px" }} />
       <Footer />
     </div>
