@@ -6,9 +6,23 @@ public class DiseaseVO {
 	private String diabetesData;
 	private String hyperlipidemiaData;
 	private String hypertensionData;
-	private String year;
+	private String province;
+	private String cityOrDistrict;
+	private int year;
 	
 	
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getCityOrDistrict() {
+		return cityOrDistrict;
+	}
+	public void setCityOrDistrict(String cityOrDistrict) {
+		this.cityOrDistrict = cityOrDistrict;
+	}	
 	public String getDistrictId() {
 		return districtId;
 	}
@@ -39,10 +53,10 @@ public class DiseaseVO {
 	public void setHypertensionData(String hypertensionData) {
 		this.hypertensionData = hypertensionData;
 	}
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 	

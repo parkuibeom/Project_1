@@ -22,7 +22,7 @@
 	<property name="dataSource" ref="dataSource"/>
 	<property name="mapperLocations" value="classpath:com/project/dlt/**/*.xml"/>
 </bean>
-
+<context:component-scan base-package="com.project.dlt"/>
 <context:component-scan base-package="com.project.dlt.disease"/>
 <context:component-scan base-package="com.project.dlt.community"/>
 <context:component-scan base-package="com.project.dlt.member"/>

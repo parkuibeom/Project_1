@@ -1,6 +1,7 @@
 package com.project.dlt;
 
 
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 
 import org.quartz.JobBuilder;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataLodingService {
-	
+
     public void init() throws ServletException {
         // 초기화 작업 수행
         // globalData call

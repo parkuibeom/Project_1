@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.annotation.PostConstruct;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +20,12 @@ import com.project.dlt.disease.model.DiseaseVO;
 public class DiseaseApiData {
 	@Autowired
 	IDiseaseRepository diseaseRepository;
-	
+	@PostConstruct
 	public void init() {
     	try {
             // Open API에서 JSON 데이터 가져오기
-    		if (diseaseRepository.isTableExists() > 0) {
-				// 테이블이 존재하면 데이터 삭제
-    			diseaseRepository.deleteData();
-			} else {
-				// 테이블이 존재하지 않으면 테이블 생성
-				diseaseRepository.createTable();
-			}
+    		System.out.println(diseaseRepository.isTableExists());
+    		if (diseaseRepository.isTableExists() <= 0) {
     		//고혈압
             String HypertensionApiUrl = "https://api.odcloud.kr/api/15064607/v1/uddi:79d21707-cbc3-4f53-b2f8-872803530317?page=1&perPage=15000&serviceKey=OPU9u5W5vsaLPG%2BKA8hOEul5sITK2Z313hOSWeSaUmZE3jGsPPvWZ73TzkuPpCzwEiTj6jq9d%2BNJ5nARHLVYqQ%3D%3D";
             String HypertensionData = fetchDataFromAPI(HypertensionApiUrl);
@@ -55,11 +52,7 @@ public class DiseaseApiData {
             JSONObject DiabetesDataJson = new JSONObject(DiabetesData);
             JSONArray DiabetesArray = DiabetesDataJson.getJSONArray("data");
      
-            
-            
-            // 데이터베이스에 저장
-            diseaseRepository.apiData(HypertensionArray,HyperlipidemiaArray,DementiaArray,DiabetesArray);
-            
+           
             for (int i = 0; i < HypertensionArray.length(); i++) {
 				DiseaseVO diseaseVO = new DiseaseVO();
 				// JSON 데이터를 PoliceStation 객체로 변환
@@ -67,9 +60,12 @@ public class DiseaseApiData {
 				diseaseVO.setDiabetesData(DiabetesArray.getJSONObject(i).getString("지표값(퍼센트)"));
 				diseaseVO.setHyperlipidemiaData(HyperlipidemiaArray.getJSONObject(i).getString("지표값(퍼센트)"));
 				diseaseVO.setHypertensionData(HypertensionArray.getJSONObject(i).getString("지표값(퍼센트)"));
-				diseaseVO.setYear(HypertensionArray.getJSONObject(i).getString("지표연도"));
-//				diseaseRepository.insert(diseaseVO);
+				diseaseVO.setYear(HypertensionArray.getJSONObject(i).getInt("지표연도"));
+				diseaseVO.setProvince(HypertensionArray.getJSONObject(i).getString("시도"));
+				diseaseVO.setCityOrDistrict(HypertensionArray.getJSONObject(i).getString("시군구"));
+				diseaseRepository.apiInsert(diseaseVO);
 			}
+    		} 
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -11,7 +11,7 @@ public interface IDiseaseService {
 
 	public void statisticsService(Model model,String area);
 	
-	public List<DiseaseVO> getData(String district);
+	public List<DiseaseVO> getData(String region,String disease);
 	
 	
 	

@@ -11,16 +11,16 @@ import com.project.dlt.disease.model.DistrictVO;
 public interface IDiseaseRepository {
 	public List<DistrictVO> statisticsService(@Param("area") String area);
 
-	public List<DiseaseVO> getData(@Param("district") String district);
+	public List<DiseaseVO> getData(@Param("region") String region, @Param("disease") String disease);
 
 	public void apiData(JSONArray HypertensionArray, JSONArray HyperlipidemiaArray, JSONArray DementiaArray,
 			JSONArray DiabetesArray);
 
 	public int isTableExists();
 
-	public void deleteData();
+	public void deleteTable();
 
 	public void createTable();
-	
-	public void insert();
+
+	public void apiInsert(DiseaseVO disease);
 }

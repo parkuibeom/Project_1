@@ -27,14 +27,52 @@
 		<result property="districtId" column="DISTRICT_ID" />
 		<result property="demeniaData" column="DEMENTIA_DATA" />
 		<result property="diabetesData" column="DIABETES_DATA" />
-		<result property="hyperlipidemiaData" column="HYPERLIPIDEMIA_DATA" />
+		<result property="hyperlipidemiaData"
+			column="HYPERLIPIDEMIA_DATA" />
 		<result property="hypertensionData" column="HYPERTENSION_DATA" />
 		<result property="year" column="YEAR" />
 	</resultMap>
 
 	<select id="getData" resultMap="disease">
-		SELECT * FROM DISEASE WHERE
-		DISTRICT_ID = #{district}
+			SELECT ${disease} FROM APIDATA
+			WHERE province = #{region} AND cityordistrict = '전체'
 	</select>
+
+	<select id="isTableExists" resultType="int">
+		SELECT COUNT(*) AS COUNT
+		FROM APIDATA
+	</select>
+
+	<delete id="deleteTable">
+		DROP TABLE APIDATA
+	</delete>
+
+	<update id="createTable">
+		CREATE TABLE APIDATA (
+		DISTRICT_ID VARCHAR2(10),
+		DEMENTIA_DATA VARCHAR2(10),
+		DIABETES_DATA VARCHAR2(10),
+		HYPERLIPIDEMIA_DATA VARCHAR2(10),
+		HYPERTENSION_DATA VARCHAR2(10),
+		Province VARCHAR2(10),
+		CityOrDistrict VARCHAR2(10),
+		YEAR VARCHAR2(10)
+		)
+	</update>
+
+
+
+
+
+	<insert id="apiInsert">
+		INSERT INTO APIDATA (DISTRICT_ID, DEMENTIA_DATA,
+		DIABETES_DATA,
+		HYPERLIPIDEMIA_DATA, HYPERTENSION_DATA, Province,
+		CityOrDistrict,
+		YEAR)
+		VALUES (APIDATA_SEQ.nextval, #{demeniaData},
+		#{diabetesData}, #{hyperlipidemiaData}, #{hypertensionData},
+		#{province}, #{cityOrDistrict},#{year})
+	</insert>
 
 </mapper>

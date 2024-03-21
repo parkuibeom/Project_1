@@ -23,8 +23,23 @@ public class DiseaseService implements IDiseaseService{
 	}
 	
 	@Override
-	public List<DiseaseVO> getData(String district) {
-		List<DiseaseVO> list = diseaseRepository.getData(district);
+	public List<DiseaseVO> getData(String region,String disease) {
+		
+		if(disease.equals("hyperlipidemia")) {
+			disease = "HYPERLIPIDEMIA_DATA";
+		}else if(disease.equals("dementia")) {
+			disease = "DEMENTIA_DATA";
+		}else if(disease.equals("diabetes")) {
+			disease = "DIABETES_DATA";
+		}else if(disease.equals("hbp")) {
+			disease = "HYPERTENSION_DATA";
+		}
+		
+		List<DiseaseVO> list = diseaseRepository.getData(region,disease);
+		
+		System.out.println(region);
+		System.out.println(disease);
+		System.out.println(list);
 		return list;
 	}
 }
