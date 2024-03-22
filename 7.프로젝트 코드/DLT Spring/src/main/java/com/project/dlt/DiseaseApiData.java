@@ -24,8 +24,13 @@ public class DiseaseApiData {
 	public void init() {
     	try {
             // Open API에서 JSON 데이터 가져오기
-    		System.out.println(diseaseRepository.isTableExists());
-    		if (diseaseRepository.isTableExists() <= 0) {
+    		if (diseaseRepository.isTableExists() > 0) {
+				// 테이블이 존재하면 데이터 삭제
+    			diseaseRepository.deleteTable();
+			} else {
+				// 테이블이 존재하지 않으면 테이블 생성
+				diseaseRepository.createTable();
+			}
     		//고혈압
             String HypertensionApiUrl = "https://api.odcloud.kr/api/15064607/v1/uddi:79d21707-cbc3-4f53-b2f8-872803530317?page=1&perPage=15000&serviceKey=OPU9u5W5vsaLPG%2BKA8hOEul5sITK2Z313hOSWeSaUmZE3jGsPPvWZ73TzkuPpCzwEiTj6jq9d%2BNJ5nARHLVYqQ%3D%3D";
             String HypertensionData = fetchDataFromAPI(HypertensionApiUrl);
@@ -65,7 +70,7 @@ public class DiseaseApiData {
 				diseaseVO.setCityOrDistrict(HypertensionArray.getJSONObject(i).getString("시군구"));
 				diseaseRepository.apiInsert(diseaseVO);
 			}
-    		} 
+    	
         } catch (Exception e) {
             e.printStackTrace();
         }

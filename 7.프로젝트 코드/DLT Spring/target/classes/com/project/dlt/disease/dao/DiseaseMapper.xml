@@ -34,13 +34,13 @@
 	</resultMap>
 
 	<select id="getData" resultMap="disease">
-			SELECT ${disease} FROM APIDATA
-			WHERE province = #{region} AND cityordistrict = '전체'
+		SELECT ${disease} FROM APIDATA
+		WHERE province = #{region} AND cityordistrict = '전체'
 	</select>
 
 	<select id="isTableExists" resultType="int">
-		SELECT COUNT(*) AS COUNT
-		FROM APIDATA
+		SELECT COUNT(*) FROM
+		USER_TABLES WHERE TABLE_NAME = 'APIDATA'
 	</select>
 
 	<delete id="deleteTable">
