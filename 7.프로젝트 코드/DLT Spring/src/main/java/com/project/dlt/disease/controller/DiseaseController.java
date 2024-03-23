@@ -29,8 +29,6 @@ public class DiseaseController {
 		diseaseSrevice.statisticsService(modle, area);
 		return "/disease/statisticsService";
 	}
-	
-	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping(value = "/disease/chartData")
 	public@ResponseBody List<DiseaseVO> getData(String region,String disease) {
 		List<DiseaseVO> list = diseaseSrevice.getData(region,disease);
