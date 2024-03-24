@@ -16,13 +16,6 @@ public class DiseaseService implements IDiseaseService{
 	IDiseaseRepository diseaseRepository;
 	
 	@Override
-	public void statisticsService(Model model,String area) {
-		List<DistrictVO> list =  diseaseRepository.statisticsService(area); 
-		model.addAttribute("list", list);
-		model.addAttribute("area", list.get(0).getRegionName());
-	}
-	
-	@Override
 	public List<DiseaseVO> getData(String region,String disease) {
 		
 		if(disease.equals("hyperlipidemia")) {

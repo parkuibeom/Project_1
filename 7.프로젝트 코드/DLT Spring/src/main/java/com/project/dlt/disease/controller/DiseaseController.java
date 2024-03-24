@@ -19,16 +19,6 @@ public class DiseaseController {
 	@Autowired
 	IDiseaseService diseaseSrevice;
 
-	@GetMapping(value = "/disease/map")
-	public String map() {
-		return "/disease/map";
-	}
-	
-	@GetMapping(value = "/disease/statisticsService")
-	public String statisticsService(Model modle,String area) {
-		diseaseSrevice.statisticsService(modle, area);
-		return "/disease/statisticsService";
-	}
 	@GetMapping(value = "/disease/chartData")
 	public@ResponseBody List<DiseaseVO> getData(String region,String disease) {
 		List<DiseaseVO> list = diseaseSrevice.getData(region,disease);

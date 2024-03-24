@@ -1,4 +1,4 @@
-package com.project.dlt.community.service;
+package com.project.dlt.disease.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
