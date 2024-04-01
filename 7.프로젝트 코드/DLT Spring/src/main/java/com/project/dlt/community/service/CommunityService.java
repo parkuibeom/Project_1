@@ -32,8 +32,8 @@ public class CommunityService implements ICommunityService {
 		}
 		int startPage = Math.max(1, page - showPBtnNum / 2);
 		int endPage = Math.min(pageBtnNum, startPage + showPBtnNum - 1);
-		int startRow = (page - 1) * showListNum + 1; // 페이지의 시작 행 번호
-		int endRow = startRow + showListNum - 1; // 페이지의 끝 행 번호
+		int startRow = (page - 1) * showListNum + 1;
+		int endRow = startRow + showListNum - 1;
 
 		List<CommunityVO> communityList = communityRepository.communityList(startRow, endRow);
 		model.addAttribute("communityList", communityList);

@@ -1,4 +1,4 @@
-package com.project.dlt;
+package com.project.dlt.disease.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,8 +25,9 @@ public class DiseaseApiData {
     	try {
             // Open API에서 JSON 데이터 가져오기
     		if (diseaseRepository.isTableExists() > 0) {
-				// 테이블이 존재하면 데이터 삭제
+				// 테이블이 존재하면 데이터 삭제 후 생성
     			diseaseRepository.deleteTable();
+    			diseaseRepository.createTable();
 			} else {
 				// 테이블이 존재하지 않으면 테이블 생성
 				diseaseRepository.createTable();
@@ -60,7 +61,6 @@ public class DiseaseApiData {
            
             for (int i = 0; i < HypertensionArray.length(); i++) {
 				DiseaseVO diseaseVO = new DiseaseVO();
-				// JSON 데이터를 PoliceStation 객체로 변환
 				diseaseVO.setDemeniaData(DementiaArray.getJSONObject(i).getString("지표값(퍼센트)"));
 				diseaseVO.setDiabetesData(DiabetesArray.getJSONObject(i).getString("지표값(퍼센트)"));
 				diseaseVO.setHyperlipidemiaData(HyperlipidemiaArray.getJSONObject(i).getString("지표값(퍼센트)"));

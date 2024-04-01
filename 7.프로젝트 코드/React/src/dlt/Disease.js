@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Nav";
 import Footer from "./Footer";
-import ChartComponent from "./DiseaseChart";
+import ChartSection from "./ChartSection";
 import Infobox from "./Infobox";
-import RegionSelect from "./RegionSelect";
-import DiseaseButton from "./DiseaseButton";
+import DiseaseButtonGroup from "./DiseaseButtonGroup"; // 수정된 부분
+
 import GraphTypeButtons from "./GraphTypeButtons";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,8 +23,11 @@ function StatisticsPage() {
 
   useEffect(() => {
     fetchData(1, selectedRegion1, selectedDisease);
+  }, [selectedDisease, selectedRegion1]);
+
+  useEffect(() => {
     fetchData(2, selectedRegion2, selectedDisease);
-  }, [selectedDisease, selectedRegion1, selectedRegion2]);
+  }, [selectedDisease, selectedRegion2]);
 
   const fetchData = async (chartNumber, region, disease) => {
     try {
@@ -70,56 +73,36 @@ function StatisticsPage() {
         <h1>"차트 데이터 제공 서비스"</h1>
         <p>차트 정보를 한눈에 제공합니다.</p>
       </div>
+
       <div
         className="container"
         style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: "100px",
+          marginTop: "80px",
         }}
       >
-        <div
-          className="container"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "80px",
-          }}
-        >
-          <div style={{ marginRight: "30px" }}>
-            <div
-              style={{ width: "700px", height: "500px", marginBottom: "20px" }}
-            >
-              <ChartComponent
-                chartData={chartData1}
-                selectedGraphType={selectedGraphType}
-              />
-            </div>
+        <div style={{ marginRight: "30px" }}>
+          <ChartSection
+            chartData={chartData1}
+            selectedRegion={selectedRegion1}
+            handleRegionChange={handleRegionChange}
+            chartNumber={1}
+            selectedGraphType={selectedGraphType}
+          />
+        </div>
 
-            <RegionSelect
-              selectedRegion={selectedRegion1}
-              handleRegionChange={handleRegionChange}
-              chartNumber={1}
-            />
-          </div>
-
-          <div style={{ marginLeft: "30px" }}>
-            <div
-              style={{ width: "700px", height: "500px", marginBottom: "20px" }}
-            >
-              <ChartComponent
-                chartData={chartData2}
-                selectedGraphType={selectedGraphType}
-              />
-            </div>
-            <RegionSelect
-              selectedRegion={selectedRegion2}
-              handleRegionChange={handleRegionChange}
-              chartNumber={2}
-            />
-          </div>
+        <div style={{ marginLeft: "30px" }}>
+          <ChartSection
+            chartData={chartData2}
+            selectedRegion={selectedRegion2}
+            handleRegionChange={handleRegionChange}
+            chartNumber={2}
+            selectedGraphType={selectedGraphType}
+          />
         </div>
       </div>
+
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
       >
@@ -128,7 +111,6 @@ function StatisticsPage() {
           handleGraphTypeChange={handleGraphTypeChange}
         />
       </div>
-
       <div
         style={{
           display: "flex",
@@ -136,40 +118,11 @@ function StatisticsPage() {
           alignItems: "center",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "600px",
-          }}
-        >
-          <DiseaseButton
-            selectedDisease={selectedDisease}
-            handleDiseaseButtonClick={handleDiseaseButtonClick}
-            diseaseValue="hyperlipidemia"
-            disease="고지혈증"
-          />
-          <DiseaseButton
-            selectedDisease={selectedDisease}
-            handleDiseaseButtonClick={handleDiseaseButtonClick}
-            diseaseValue="dementia"
-            disease="치매"
-          />
-          <DiseaseButton
-            selectedDisease={selectedDisease}
-            handleDiseaseButtonClick={handleDiseaseButtonClick}
-            diseaseValue="diabetes"
-            disease="당뇨"
-          />
-          <DiseaseButton
-            selectedDisease={selectedDisease}
-            handleDiseaseButtonClick={handleDiseaseButtonClick}
-            diseaseValue="hbp"
-            disease="고혈압"
-          />
-        </div>
+        <DiseaseButtonGroup
+          selectedDisease={selectedDisease}
+          handleDiseaseButtonClick={handleDiseaseButtonClick}
+        />{/* 수정된 부분 */}
       </div>
-
       <Infobox style={{ marginTop: "100px", marginBottom: "100px" }} />
       <Footer />
     </div>

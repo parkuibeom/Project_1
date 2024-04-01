@@ -5,6 +5,8 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import com.project.dlt.disease.service.DiseaseApiData;
+
 public class DataLoadingQuartz implements Job{
 
 	@Override
