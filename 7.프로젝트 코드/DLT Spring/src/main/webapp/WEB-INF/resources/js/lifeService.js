@@ -72,26 +72,17 @@ var chartData = {
 
 
 //fetch를 사용한 서비스 구현
+//과거 차트
 function getChartData() {
     var regionSecond;
     var regionFirst;
 
     regionFirst = document.getElementById('selectedRegionFirst').value;
     regionSecond = document.getElementById('selectedRegionSecond').value;
-    var yearStart = 2023;
     var yearEnd = document.getElementById('year-select-end').value;
 
-    //시작 연도가 더 큰 값을 설정할 때
-    if (yearStart > yearEnd) {
-        let temp;
-        temp = yearStart;
-        yearStart = yearEnd;
-        yearEnd = temp;
-    }
-
-
     //fetch(차트 비동기)
-    fetch(`regionLife.do?regionFirst=${regionFirst}&regionSecond=${regionSecond}&yearStart=${yearStart}&yearEnd=${yearEnd}`)
+    fetch(`/dlt/life/getLife/${regionFirst}/${regionSecond}/2023/${yearEnd}`)
         .then(response => response.json())
         .then(data => {
             let map = new Map();
@@ -117,12 +108,9 @@ function getChartData() {
             var secondRegionData = data.filter(item => map.get(item.region_id) == regionSecond).map(item => item.value);
 
             var selectedYears = [];
-            for (var i = parseInt(yearStart); i <= parseInt(yearEnd); i++) {
+            for (var i = parseInt(2023); i <= parseInt(yearEnd); i++) {
                 selectedYears.push(String(i));
             }
-
-            console.log(firstRegionData);
-            console.log(secondRegionData);
 
             //라벨, 데이터 설정
             chartData.labels = selectedYears;
@@ -139,15 +127,14 @@ function getChartData() {
 }
 
 //fetch를 사용한 서비스 구현2
+//미래
 function getPastChartData() {
     var regionFirst;
 
     regionFirst = document.getElementById('pastRegion').value;
-
-
-    console.log();
+    
     //fetch(차트 비동기)
-    fetch(`regionLife.do?regionFirst=${regionFirst}&yearStart=2013&yearEnd=2022`)
+    fetch(`getLife/${regionFirst}/2013/2022`)
         .then(response => response.json())
         .then(data => {
             let map = new Map();
@@ -341,21 +328,27 @@ document.getElementById("personalForm").addEventListener('submit', function () {
     }
     else {
         let sendData = {
-            personal_age: ageCheck,
+            personal_age : ageCheck,
             genderCheck: genderCheck,
             smokeCheck: smokeCheck,
             drinkingCheck: drinkingCheck,
             hbpCheck: hbpCheck,
             diabetesCheck: diaCheck
         }
-        fetch('personalLife.do', {
+        fetch('lifeCalc', {
+        	headers : {
+        		"Content-Type" : "application/json",
+        	},
             method: 'POST',
             body: JSON.stringify(sendData)
         })
             .then(response => response.json())
             .then(data => {
                 const lifeContainer = document.getElementById('inputLife');
-                lifeContainer.innerHTML = '<div class = "col mb-1" style="font-weight : bold;">사용자의 기대 수명은  ' + (parseInt(sendData.personal_age) + data.age) + '세이며 <br> 남은 기대 여명은 ' + data.age + '세입니다. </div> <a href="#textMessage" class="btn btn-primary">값 도출 식 보기</a>';
+                if(data < 0){ 
+                	data = 1;
+                }
+                lifeContainer.innerHTML = '<div class = "col mb-1" style="font-weight : bold;">사용자의 기대 수명은  ' + (parseInt(sendData.personal_age) + data) + '세이며 <br> 남은 기대 여명은 ' + data + '세입니다. </div> <a href="#textMessage" class="btn btn-primary">값 도출 식 보기</a>';
             })
             .catch(error => {
                 console.log(error);

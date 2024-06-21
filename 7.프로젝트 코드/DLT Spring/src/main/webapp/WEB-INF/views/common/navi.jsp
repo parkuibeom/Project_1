@@ -22,7 +22,7 @@
 			<div class="navbar-nav ms-auto p-4 p-lg-0">
 				<!-- <a href="index.html" class="nav-item nav-link active">Home</a> -->
 				<div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="/dlt/disease/map"
+					<a class="nav-link dropdown-toggle" href="/dlt/life/lifeService.jsp"
 						id="navbarDropdownGroup1" role="button" data-bs-toggle="dropdown">
 						건강·정책 </a>
 					<div class="dropdown-menu">
@@ -36,7 +36,7 @@
 						id="navbarDropdownGroup1" role="button" data-bs-toggle="dropdown">
 						삶의 질 분석 </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="lifeService.jsp">기대수명 예측</a> <a
+						<a class="dropdown-item" href="/dlt/life">기대수명 예측</a> <a
 							class="dropdown-item" href="survey.jsp">당신의 만족도는?</a>
 					</div>
 				</div>

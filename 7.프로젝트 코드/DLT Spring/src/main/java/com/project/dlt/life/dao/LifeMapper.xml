@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.project.dlt.life.dao.ILifeRepository">
+	<resultMap id = "lifeExpectancyMapping" type = "com.project.dlt.life.model.LifeExpectancyVO">
+		<result property = "smokeRate" column = "smoke_rate"/>
+		<result property = "drinkingRate" column = "drinking_rate"/>
+		<result property = "hbpRate" column = "hbp_rate"/>
+		<result property = "diabetesRate" column = "diabetes_rate"/>
+		<result property = "expecId" column = "expec_id"/>
+		<result property = "year" column = "life_year"/>
+		<result property = "regionId" column = "region_id"/>
+		<result property = "expectancyLife" column = "expectancy_life"/>
+	</resultMap>
+	
+	<select id = "getCoefficient" parameterType = "int" resultType = "com.project.dlt.life.model.LifeExpectancyVO">
+		SELECT smoke_rate AS smokeRate, drinking_rate AS drinkingRate, hbp_rate AS hbpRate, diabetes_rate AS diabetesRate FROM personal_train_data WHERE age_group = #{ageCheck} AND gender = #{gender}
+	</select> 
+	
+	<select id = "getLife" parameterType = "int" resultType = "com.project.dlt.life.model.LifeExpectancyVO">
+		<![CDATA[
+			SELECT life_year AS year, region_id AS regionId, expectancy_life AS expectancyLife FROM region_life_expectancy WHERE life_year >= #{yearStart} AND life_year <= #{yearEnd} AND (region_id = #{firstRegionId} OR region_id = #{secondRegionId})
+		]]>
+	</select>
+</mapper>
