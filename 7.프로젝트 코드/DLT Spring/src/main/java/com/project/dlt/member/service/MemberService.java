@@ -37,7 +37,7 @@ public class MemberService implements IMemberService{
             String returnURL = (String) session.getAttribute("returnURL");
             session.removeAttribute("returnURL"); // 로그인 후 이전 페이지로 리다이렉트하기 위해 세션에서 URL 제거
 
-            if (returnURL == null || returnURL.equals("http://localhost:8181/TeamProject/registration.jsp")) {
+            if (returnURL == null) {
                 return "redirect:/"; // 로그인 후 이동할 URL
             } else {
                 return "redirect:" + returnURL; // 이전 페이지로 리다이렉트

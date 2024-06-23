@@ -43,7 +43,6 @@ public class LifeController {
 	@ResponseBody
 	public ResponseEntity<String> getLife(@PathVariable String regionFirst,@PathVariable String regionSecond, @PathVariable int yearStart, @PathVariable int yearEnd){		
 		String json = lifeService.getLife(regionFirst,regionSecond, yearStart, yearEnd);
-		System.out.println("111111111111111111");
         return ResponseEntity.ok()
         .contentType(new MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8))
         .body(json); 
@@ -54,7 +53,6 @@ public class LifeController {
 	@ResponseBody
 	public ResponseEntity<String> getLife(@PathVariable String regionFirst, @PathVariable int yearStart, @PathVariable int yearEnd){		
 		String json = lifeService.getLife(regionFirst, yearStart, yearEnd);
-		System.out.println("2222222222222222222");
         return ResponseEntity.ok()
         .contentType(new MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8))
         .body(json); 
