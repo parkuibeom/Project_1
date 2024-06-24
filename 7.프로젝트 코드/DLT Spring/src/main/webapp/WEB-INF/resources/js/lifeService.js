@@ -134,7 +134,7 @@ function getPastChartData() {
     regionFirst = document.getElementById('pastRegion').value;
     
     //fetch(차트 비동기)
-    fetch(`getLife/${regionFirst}/2013/2022`)
+    fetch(`/dlt/life/getLife/${regionFirst}/2013/2022`)
         .then(response => response.json())
         .then(data => {
             let map = new Map();
@@ -160,7 +160,6 @@ function getPastChartData() {
 
             var selectedYears = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
 
-            console.log(firstRegionData);
 
             //라벨, 데이터 설정
             pastChartData.labels = selectedYears;
@@ -335,7 +334,7 @@ document.getElementById("personalForm").addEventListener('submit', function () {
             hbpCheck: hbpCheck,
             diabetesCheck: diaCheck
         }
-        fetch('lifeCalc', {
+        fetch('/dlt/life/lifeCalc', {
         	headers : {
         		"Content-Type" : "application/json",
         	},

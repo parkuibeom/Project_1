@@ -24,8 +24,8 @@ function checkMember() {
     if (id.length == 0 || id == "") {
         alert("아이디는 필수입니다.");
     }
-    else if (id.length < 4 || !idRegex.test(id) || id.length > 10) {
-        alert("아이디는 4글자 이상, 10글자 이하여야 하며 특수문자와 공백을 포함할 수 없습니다.")
+    else if (id.length < 8 || !idRegex.test(id) || id.length > 12) {
+        alert("아이디는 8글자 이상, 12글자 이하여야 하며 특수문자와 공백을 포함할 수 없습니다.")
     }
     else if (email == 0 || email == "") {
         alert("이메일은 필수입니다.");
@@ -60,5 +60,3 @@ function checkMember() {
         memberForm.submit();
     }
 }
-
-//아이디는 
